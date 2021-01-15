@@ -11,7 +11,14 @@ Two class member functions:
     * ki_coef -> corresponds to the KI coefficient of the controller.
     * kd_coef -> corresponds to the KD coefficient of the controller.
     
-2. float pid_control::pid_seek(float setpoint, float currentVal)
+2. pid_seek(float setpoint, float currentVal)
     * setpoint -> is the desired value.
     * currentVal -> the output of the system.
     
+e.g:
+// Instantiating an object
+pid_control Temperature;
+
+// Accessing the PID functions:
+Temperature.pid_init( kp, ki, kd);
+Temperature.pid_seek(setpoint, currentVal);
