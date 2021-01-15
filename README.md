@@ -15,35 +15,3 @@ Two class member functions:
     * setpoint -> is the desired value.
     * currentVal -> the output of the system.
     
-e.g:
-below peice of code is just for the demonstration purposes to show how to implement the library with its functions otherwise it has no functionality at this point unless you modify line 39.
-
-#include <iostream>
-   #include <PID.h>
-
-using namespace std;
-
-pid_control   Temperature;
-
-int main(void){
-
-float kp =  0.23;
-float ki =  0.12;
-float kd =  0.003;
-float desired_Temp = 75.2;         // Fahrenheit, 24 deg in C
-float new_Input = 0.0; 
-
-Temperature.pid_init( kp, ki, kd);
-
-while(true){
-
-// Temp_out => reading temperature
-new_Input = Temperature.pid_seek( desired_Temp, Temp_out);
-Temp_out += new_Input;
-
-}
-
-return 0;
-}
-
-
