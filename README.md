@@ -16,9 +16,9 @@ Two class member functions:
     * currentVal -> the output of the system.
     
 e.g:
-   // Instantiating an object.
+   Instantiating an object.
    pid_control Temperature;
 
-// Accessing the PID functions.
+Accessing the PID functions.
 Temperature.pid_init( kp, ki, kd);
 Temperature.pid_seek(setpoint, currentVal);
