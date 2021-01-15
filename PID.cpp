@@ -1,27 +1,18 @@
 #include <PID.h>
 
-/// <summary>
-/// This function initializes PID coefficients.
-/// </summary>
-/// <param name="kp_coef="> KP</param>
-/// <param name="ki_coef="> KI</param>
-/// <param name="kd_coef">  KD</param>
+// This function initializes PID coefficients.
 void pid_control::pid_init(float kp_coef, float ki_coef, float kd_coef) {
 	ki = ki_coef;
 	kp = kp_coef;
 	kd = kd_coef;
 }
 
-/// <summary>
-/// This function two parameters and return an output that
-/// must be added to the system for the correction.
-/// </summary>
-/// <param name="setpoint="> Desired Value </param>
-/// <param name="currentVal="> Sensor Output </param>
-/// <returns> PID output</returns>
+
+// This function takes two parameters and return a input that
+// must be added to the system's output for the correction.
 float pid_control::pid_seek(float setpoint, float currentVal) {
 	P = setpoint - currentVal;					// Error
-	I = 0;										// Make sure current I is zero
+	I = 0;								// Make sure current I and D values are reset
 	D = 0;
 	dt = clock() - oldT;						// Time Interval
 	if (dt < 0) {
@@ -37,7 +28,7 @@ float pid_control::pid_seek(float setpoint, float currentVal) {
 			newInput = kp * P + ki * I + kd * D;
 		}
 
-		// Storing Current value for the future use.
+		// Storing Current values for the future use.
 		oldP = P;
 		oldI = I;
 		oldD = D;
