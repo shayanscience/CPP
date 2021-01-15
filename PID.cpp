@@ -15,16 +15,20 @@ float pid_control::pid_seek(float setpoint, float currentVal) {
 	I = 0;								// Make sure current I and D values are reset
 	D = 0;
 	dt = clock() - oldT;						// Time Interval
+	
+	// If time is negative!!! :|
 	if (dt < 0) {
 		// Do nothing, I haven't called you yet.
 	}
 	else {
+		
+		// If time hasn't gone by or for some reason time is stopped! (The future is the present and vice versa!) :)
 		if (dt == 0) {
-			newInput = oldOutput;
+			newInput = oldOutput;		// New input is the prevo=
 		}
 		else {
-			I = ((P + oldI) / dt);
-			D = ((P - oldP) / dt);
+			I = ((P + oldI) / dt);		// Integral operation freq = 1/time!
+			D = ((P - oldP) / dt);		// Derivative operation.
 			newInput = kp * P + ki * I + kd * D;
 		}
 
